@@ -22,12 +22,13 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->integer('phone');
+            $table->boolean('admin');
             $table->timestamps();
         });
 
         DB::table('users')->insert([
-            ['name'=>'admin', 'email'=>'admin@gmail.com', 'password'=> bcrypt('123456'), 'phone' => 1124652332],
-            ['name'=>'User1', 'email'=>'user1@gmail.com', 'password'=> bcrypt('123456'), 'phone' => 1155665544]
+            ['name'=>'admin', 'email'=>'admin@gmail.com', 'password'=> bcrypt('123456'), 'phone' => 1124652332, 'admin' => true],
+            ['name'=>'User1', 'email'=>'user1@gmail.com', 'password'=> bcrypt('123456'), 'phone' => 1155665544, 'admin' => false]
         ]);
     }
 

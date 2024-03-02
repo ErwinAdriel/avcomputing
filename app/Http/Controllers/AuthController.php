@@ -45,8 +45,12 @@ class AuthController extends Controller
         return redirect('/')->withSuccess('No tienes acceso, por favor iniciar sesion');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

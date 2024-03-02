@@ -24,3 +24,5 @@ Route::get('/', [AuthController::class, 'index'])->name('app');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('/home', [AuthController::class, 'logueado'])->name('home');
+
+Route::post('/home', [AuthController::class, 'logout'])->name('logout');
