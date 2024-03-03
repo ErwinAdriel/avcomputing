@@ -8,7 +8,11 @@
             <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
         </ol>
     </nav>
+    @if(!auth()->user()->admin == 1)
+    <a class="btn btn-secondary btn-add" role="button" onclick="mensaje()">Add</a>
+    @else
     <a class="btn btn-success btn-add" href="" role="button">Add</a>
+    @endif
     <div class="table-style">
         <table class="table table-responsive-sm table-style2 table-bordered">
             <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -32,17 +36,25 @@
                     <td>{{ $usuario->email }}</td>
                     <td>{{ $usuario->phone }}</td>
                     @if($usuario->admin == true)
-                        <td>Si</td>
+                    <td>Si</td>
                     @else
-                        <td>No</td>
+                    <td>No</td>
                     @endif
                     <td>{{ $usuario->created_at }}</td>
                     <td>{{ $usuario->updated_at }}</td>
                     <td>
+                        @if(!auth()->user()->admin == 1)
+                        <a class="btn btn-secondary" onclick="mensaje()">Editar</a>
+                        <button type="button" class="btn btn-secondary" onclick="mensaje()">
+                            Eliminar
+                        </button>
+                        @else
                         <a class="btn btn-primary" href="usuarios/{{$usuario->id}}/edit">Editar</a>
                         <button type="button" class="btn btn-danger">
                             Eliminar
                         </button>
+                        @endif
+                        
                     </td>
                 </tr>
                 @endforeach
@@ -53,24 +65,8 @@
 </div>
 
 <script>
-    function onDelete(id, model) {
-        const result = confirm("Está seguro de que desea eliminar este registro?");
-        const url = `/${model}/${id}`;
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        if (result) {
-            $.ajax({
-                type: "DELETE",
-                url,
-                success: function() {
-                    location.reload();
-                }
-            })
-        }
+    function mensaje() {
+        window.alert("Solicitar permisos a Administrador!");
     }
 </script>
 @endsection
