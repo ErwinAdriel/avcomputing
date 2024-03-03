@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MarcaController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +21,30 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 
+/*  INDEX   */
+
 Route::get('/', [AuthController::class, 'index'])->name('app');
+
+/*  LOGIN   */
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
+/*  USUARIO LOGUEADO   */
+
 Route::get('/home', [AuthController::class, 'logueado'])->name('home');
 
+/*  CERRAR SESION   */
+
 Route::post('/home', [AuthController::class, 'logout'])->name('logout');
+
+/*  RESOURCE MARCAS  */
+
+Route::get('/list', [MarcaController::class, 'index'])->name('marcaList');
+
+Route::get('/create', [MarcaController::class, 'create'])->name('marcaCreate');
+
+Route::post('/create', [MarcaController::class, 'store'])->name('create');
+
+/*  RESOURCE USUARIOS   */
+
+Route::get('/usuarios/list', [UserController::class, 'index'])->name('usuarioList');
