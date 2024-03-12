@@ -31,13 +31,17 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 /*  USUARIO LOGUEADO   */
 
-Route::get('/home', [AuthController::class, 'logueado'])->name('home');
+Route::get('/layout', [AuthController::class, 'logueado'])->name('layout');
 
 /*  CERRAR SESION   */
 
-Route::post('/home', [AuthController::class, 'logout'])->name('logout');
+Route::post('/layout', [AuthController::class, 'logout'])->name('logout');
 
 /*  RESOURCE MARCAS  */
+
+Route::apiResource('/marcas', MarcaController::class);
+
+/*eddddddddddddddddddddddd */
 
 Route::get('/list', [MarcaController::class, 'index'])->name('marcaList');
 

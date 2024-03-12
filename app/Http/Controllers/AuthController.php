@@ -10,7 +10,7 @@ class AuthController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            return view('home');
+            return view('layout');
         } else {
             return view('login');
         }
@@ -29,7 +29,7 @@ class AuthController extends Controller
 	
 	    // Si el usuario existe lo logamos y lo llevamos a la vista de "logados" con un mensaje
 	    if (Auth::attempt($credentials)) {
-	        return redirect()->intended('home')
+	        return redirect()->intended('layout')
 	            ->withSuccess('Logueado correctamente');
 	    }
 	
@@ -40,7 +40,7 @@ class AuthController extends Controller
     public function logueado()
     {
         if (Auth::check()) {
-            return view('home');
+            return view('layout');
         }
         return redirect('/')->withSuccess('No tienes acceso, por favor iniciar sesion');
     }
