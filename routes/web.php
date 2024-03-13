@@ -39,7 +39,6 @@ Route::post('/layout', [AuthController::class, 'logout'])->name('logout');
 
 /*  RESOURCE MARCAS  */
 
-Route::apiResource('/marcas', MarcaController::class);
 
 /*eddddddddddddddddddddddd */
 
@@ -48,6 +47,10 @@ Route::get('/list', [MarcaController::class, 'index'])->name('marcaList');
 Route::get('/create', [MarcaController::class, 'create'])->name('marcaCreate');
 
 Route::post('/create', [MarcaController::class, 'store'])->name('create');
+
+Route::get('/{id}/edit', [MarcaController::class, 'edit'])->name('marcaEdit');
+
+Route::put('/{id}', [MarcaController::class, 'update'])->name('marcaUpdate');
 
 /*  RESOURCE USUARIOS   */
 

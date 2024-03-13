@@ -25,4 +25,22 @@ class MarcaController extends Controller
 
         return redirect('list');
     }
+
+    public function edit($id)
+    {
+        $marca= Marca::findOrFail($id);
+        return view('marcas.edit');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $marca = Marca::findOrFail($id);
+
+        $marca->name = $request->name;
+
+        $marca->save();
+
+        return redirect('list');
+    }
+
 }
