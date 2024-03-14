@@ -37,9 +37,11 @@
                     <td>{{ $marca->updated_at }}</td>
                     <td>
                         <a class="btn btn-primary" href="{{ route('marcaEdit', $marca->id) }}">Editar</a>
-                        <button type="button" class="btn btn-danger">
-                            Eliminar
-                        </button>
+                        <form class="d-flex" action="{{ route('marcaDelete', $marca->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach

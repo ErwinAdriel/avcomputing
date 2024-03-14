@@ -52,6 +52,8 @@ Route::get('/{id}/edit', [MarcaController::class, 'edit'])->name('marcaEdit');
 
 Route::put('/{id}', [MarcaController::class, 'update'])->name('marcaUpdate');
 
+Route::delete('/{id}', [MarcaController::class, 'destroy'])->name('marcaDelete');
+
 /*  RESOURCE USUARIOS   */
 
 Route::get('/usuarios/list', [UserController::class, 'index'])->name('usuarioList');
