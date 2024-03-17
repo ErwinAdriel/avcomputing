@@ -9,15 +9,15 @@
     </nav>
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-            <a class="btn btn-success btn-add" href="{{ route('marcaCreate') }}" role="button">Add</a>
+            <a class="btn btn-success btn-add" href="{{ route('marcaCreate') }}" role="button">Nuevo</a>
             <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <input class="form-control me-2" type="search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
             </form>
         </div>
     </nav>
-    <div class="table-style">
-        <table class="table table-responsive-sm table-style2 table-bordered">
+    <div class="table-responsive">
+        <table class="table table-light table-striped">
             <meta name="csrf-token" content="{{ csrf_token() }}">
             <thead class="thead-dark">
                 <tr>
@@ -26,17 +26,20 @@
                     <th scope="col">Fecha de creación</th>
                     <th scope="col">Fecha de modificación</th>
                     <th scope="col">Acciones</th>
+                    <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table-group-divider">
                 @foreach ($marcas as $marca)
                 <tr>
-                    <td scope="row">{{ $marca->id }}</td>
+                    <th scope="row">{{ $marca->id }}</th>
                     <td>{{ $marca->name }}</td>
                     <td>{{ $marca->created_at }}</td>
                     <td>{{ $marca->updated_at }}</td>
                     <td>
                         <a class="btn btn-primary" href="{{ route('marcaEdit', $marca->id) }}">Editar</a>
+                    </td>
+                    <td>
                         <form class="d-flex" action="{{ route('marcaDelete', $marca->id) }}" method="post">
                             @csrf
                             @method('DELETE')

@@ -57,3 +57,10 @@ Route::delete('/{id}', [MarcaController::class, 'destroy'])->name('marcaDelete')
 /*  RESOURCE USUARIOS   */
 
 Route::get('/usuarios/list', [UserController::class, 'index'])->name('usuarioList');
+
+
+/*  PERFIL    */
+
+Route::get('/{id}/perfil/list', [UserController::class, 'show'])->name('perfilView');
+
+Route::put('/{id}', [UserController::class, 'update'])->name('userUpdate');

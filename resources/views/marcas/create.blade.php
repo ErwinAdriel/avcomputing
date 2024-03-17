@@ -8,7 +8,6 @@
             <li class="breadcrumb-item active" aria-current="page">Agregar</li>
         </ol>
     </nav>
-    <h5 class="h5Add"></h5>
     <div class="form-add">
         <form method="POST" action="{{route('create')}}">
             @csrf
