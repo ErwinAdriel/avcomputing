@@ -13,6 +13,27 @@ class UserController extends Controller
         return view('usuarios.list', compact('usuarios'));
     }
 
+    public function create()
+    {
+        return view('usuarios.create');
+    }
+
+    public function store(Request $request)
+    {
+        $usuario = new User();
+
+        $usuario->name = $request->name;
+        $usuario->email = $request->email;
+        $usuario->password = bcrypt($request->password);
+        $usuario->phone = $request->phone;
+        $usuario->admin = $request->admin;
+
+
+        $usuario->save();
+
+        return redirect('usuarios/list');
+    }
+
     public function show($id)
     {
         $usuario = User::find($id);

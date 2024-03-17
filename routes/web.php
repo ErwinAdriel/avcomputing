@@ -58,9 +58,14 @@ Route::delete('/{id}', [MarcaController::class, 'destroy'])->name('marcaDelete')
 
 Route::get('/usuarios/list', [UserController::class, 'index'])->name('usuarioList');
 
+Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuarioCreate');
+
+Route::post('/create', [UserController::class, 'store'])->name('create');
+
 
 /*  PERFIL    */
 
 Route::get('/{id}/perfil/list', [UserController::class, 'show'])->name('perfilView');
 
 Route::put('/{id}', [UserController::class, 'update'])->name('userUpdate');
+

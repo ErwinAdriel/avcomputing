@@ -10,10 +10,10 @@
     @if(!auth()->user()->admin == 1)
     <a class="btn btn-secondary btn-add" role="button" onclick="mensaje()">Add</a>
     @else
-    <a class="btn btn-success btn-add" href="" role="button">Add</a>
+    <a class="btn btn-success btn-add" href="{{ route('usuarioCreate') }}" role="button">Nuevo</a>
     @endif
-    <div class="table-style">
-        <table class="table table-responsive-sm table-style2 table-bordered">
+    <div class="table-responsive">
+        <table class="table table-light table-striped">
             <meta name="csrf-token" content="{{ csrf_token() }}">
             <thead class="thead-dark">
                 <tr>
@@ -27,10 +27,10 @@
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table-group-divider">
                 @foreach ($usuarios as $usuario)
                 <tr>
-                    <td scope=row>{{ $usuario->id}}</td>
+                    <th scope=row>{{ $usuario->id}}</th>
                     <td>{{ $usuario->name }}</td>
                     <td>{{ $usuario->email }}</td>
                     <td>{{ $usuario->phone }}</td>
