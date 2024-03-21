@@ -11,7 +11,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link align-middle px-0">
+                <a href="{{ route('productoList') }}" class="nav-link align-middle px-0">
                     <i class="bi bi-shop"></i>
                     <span class="ms-1 d-none d-sm-inline">Productos</span>
                 </a>

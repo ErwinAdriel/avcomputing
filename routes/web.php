@@ -3,7 +3,9 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UserController;
+use App\Models\Producto;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,6 +55,14 @@ Route::post('/categorias/create', [CategoriaController::class, 'store'])->name('
 Route::get('/categorias/{id}/edit', [CategoriaController::class, 'edit'])->name('categoriaEdit');
 Route::put('/categorias/{id}', [CategoriaController::class, 'update'])->name('categoriaUpdate');
 Route::delete('/categorias/list/{id}', [CategoriaController::class, 'destroy'])->name('categoriaDelete');
+
+/*  RESOURCE PRODUCTOS */
+Route::get('/productos/list', [ProductoController::class, 'index'])->name('productoList');
+Route::get('/productos/create', [ProductoController::class, 'create'])->name('productoCreate');
+Route::post('/productos/create', [ProductoController::class, 'store'])->name('createProducto');
+Route::get('/productos/{id}/edit', [ProductoController::class, 'edit'])->name('productoEdit');
+Route::put('/productos/{id}', [ProductoController::class, 'update'])->name('productoUpdate');
+Route::delete('/productos/list/{id}', [ProductoController::class, 'destroy'])->name('productoDelete');
 
 /*  RESOURCE USUARIOS   */
 Route::get('/usuarios/list', [UserController::class, 'index'])->name('usuarioList');

@@ -13,6 +13,11 @@ class Producto extends Model
     protected $with = ['categoria', 'marca'];
     protected $fillable = [
         'name',
+        'price',
+        'destacado',
+        'id_categoria',
+        'id_marca',
+        'description',
     ];
 
     public function categoria(){

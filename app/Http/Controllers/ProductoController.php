@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
+use App\Models\Marca;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,10 @@ class ProductoController extends Controller
 
     public function create()
     {
-        return view('productos.create');
+        $categorias = Categoria::all();
+        $marcas = Marca::all();
+
+        return view('productos.create', compact('categorias', 'marcas'));
     }
 
     public function store(Request $request)
@@ -23,6 +28,11 @@ class ProductoController extends Controller
         $producto = new Producto();
 
         $producto->name = $request->name;
+        $producto->price = $request->price;
+        $producto->destacado = $request->destacado;
+        $producto->id_categoria = $request->id_categoria;
+        $producto->id_marca = $request->id_marca;
+        $producto->description = $request->description;
 
         $producto->save();
 
@@ -32,8 +42,10 @@ class ProductoController extends Controller
     public function edit($id)
     {
         $producto = Producto::findOrFail($id);
+        $categorias = Categoria::all();
+        $marcas = Marca::all();
 
-        return view('productos.edit', compact('producto'));
+        return view('productos.edit', compact('producto', 'categorias', 'marcas'));
     }
 
     public function update(Request $request, $id)
@@ -41,6 +53,11 @@ class ProductoController extends Controller
         $producto = Producto::findOrFail($id);
 
         $producto->name = $request->name;
+        $producto->price = $request->price;
+        $producto->destacado = $request->destacado;
+        $producto->id_categoria = $request->id_categoria;
+        $producto->id_marca = $request->id_marca;
+        $producto->description = $request->description;
 
         $producto->save();
 
