@@ -35,37 +35,37 @@ Route::get('/layout', [AuthController::class, 'logueado'])->name('layout');
 Route::post('/layout', [AuthController::class, 'logout'])->name('logout');
 
 /*  RESOURCE MARCAS  */
-Route::get('/list', [MarcaController::class, 'index'])->name('marcaList');
+Route::get('/marcas/list', [MarcaController::class, 'index'])->name('marcaList');
 
-Route::get('/create', [MarcaController::class, 'create'])->name('marcaCreate');
+Route::get('/marcas/create', [MarcaController::class, 'create'])->name('marcaCreate');
 
-Route::post('/create', [MarcaController::class, 'store'])->name('create');
+Route::post('/marcas/create', [MarcaController::class, 'store'])->name('createMarca');
 
-Route::get('/{id}/edit', [MarcaController::class, 'edit'])->name('marcaEdit');
+Route::get('/marcas/{id}/edit', [MarcaController::class, 'edit'])->name('marcaEdit');
 
-Route::put('/{id}', [MarcaController::class, 'update'])->name('marcaUpdate');
+Route::put('/marcas/{id}', [MarcaController::class, 'update'])->name('marcaUpdate');
 
-Route::delete('/{id}', [MarcaController::class, 'destroy'])->name('marcaDelete');
+Route::delete('/marcas/list/{id}', [MarcaController::class, 'destroy'])->name('marcaDelete');
 
 /*  RESOURCE CATEGORIAS */
 Route::get('/categorias/list', [CategoriaController::class, 'index'])->name('categoriaList');
 
 Route::get('/categorias/create', [CategoriaController::class, 'create'])->name('categoriaCreate');
 
-Route::post('/create', [CategoriaController::class, 'store'])->name('create');
+Route::post('/categorias/create', [CategoriaController::class, 'store'])->name('createCategoria');
 
-Route::get('/{id}/edit', [CategoriaController::class, 'edit'])->name('categoriaEdit');
+Route::get('/categorias/{id}/edit', [CategoriaController::class, 'edit'])->name('categoriaEdit');
 
-Route::put('/{id}', [CategoriaController::class, 'update'])->name('update');
+Route::put('/categorias/{id}', [CategoriaController::class, 'update'])->name('categoriaUpdate');
 
-Route::delete('/{id}', [CategoriaController::class, 'destroy'])->name('delete');
+Route::delete('/categorias/list/{id}', [CategoriaController::class, 'destroy'])->name('categoriaDelete');
 
 /*  RESOURCE USUARIOS   */
 Route::get('/usuarios/list', [UserController::class, 'index'])->name('usuarioList');
 
 Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuarioCreate');
 
-Route::post('/create', [UserController::class, 'store'])->name('create');
+Route::post('/usuarios/create', [UserController::class, 'store'])->name('createUsuario');
 
 /*  PERFIL    */
 Route::get('/{id}/perfil/list', [UserController::class, 'show'])->name('perfilView');

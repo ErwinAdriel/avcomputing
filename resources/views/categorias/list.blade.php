@@ -4,12 +4,12 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/layout">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Marcas</li>
+            <li class="breadcrumb-item active" aria-current="page">Categorias</li>
         </ol>
     </nav>
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-            <a class="btn btn-success btn-add" href="{{ route('marcaCreate') }}" role="button">Nuevo</a>
+            <a class="btn btn-success btn-add" href="{{ route('categoriaCreate') }}" role="button">Nuevo</a>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
@@ -22,7 +22,7 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Descripcion</th>
+                    <th scope="col">Nombre</th>
                     <th scope="col">Fecha de creación</th>
                     <th scope="col">Fecha de modificación</th>
                     <th scope="col">Acciones</th>
@@ -30,17 +30,17 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                @foreach ($marcas as $marca)
+                @foreach ($categorias as $categoria)
                 <tr>
-                    <th scope="row">{{ $marca->id }}</th>
-                    <td>{{ $marca->name }}</td>
-                    <td>{{ $marca->created_at }}</td>
-                    <td>{{ $marca->updated_at }}</td>
+                    <th scope="row">{{ $categoria->id }}</th>
+                    <td>{{ $categoria->name }}</td>
+                    <td>{{ $categoria->created_at }}</td>
+                    <td>{{ $categoria->updated_at }}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{ route('marcaEdit', $marca->id) }}">Editar</a>
+                        <a class="btn btn-primary" href="{{ route('categoriaEdit', $categoria->id) }}">Editar</a>
                     </td>
                     <td>
-                        <form class="d-flex" action="{{ route('marcaDelete', $marca->id) }}" method="post">
+                        <form class="d-flex" action="{{ route('categoriaDelete', $categoria->id) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Eliminar</button>

@@ -29,7 +29,7 @@ class CategoriaController extends Controller
 
         $categoria->save();
 
-        return redirect('list');
+        return redirect('/categorias/list');
     }
 
     /* Retorna a la vista de editar una categoria especifica */
@@ -49,7 +49,7 @@ class CategoriaController extends Controller
 
         $categoria->save();
 
-        return redirect($id . '/edit')->withSuccess('La categoria ha sido actualizada correctamente.');
+        return redirect('/categorias' . '/' . $id . '/edit')->withSuccess('La categoria ha sido actualizada correctamente.');
     }
 
     /* Elimina una categoria especifica */
@@ -57,6 +57,6 @@ class CategoriaController extends Controller
     {
         $categoria = Categoria::find($id);
         $categoria->delete();
-        return redirect('list');
+        return redirect('/categorias/list');
     }
 }

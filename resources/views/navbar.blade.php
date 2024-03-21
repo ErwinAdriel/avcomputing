@@ -23,7 +23,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link align-middle px-0">
+                <a href="{{ route('categoriaList') }}" class="nav-link align-middle px-0">
                     <i class="bi bi-list-check"></i>
                     <span class="ms-1 d-none d-sm-inline">Categorias</span>
                 </a>

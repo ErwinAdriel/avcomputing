@@ -4,12 +4,12 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/layout">Home</a></li>
-            <li class="breadcrumb-item"><a href="/list">Marcas</a></li>
+            <li class="breadcrumb-item"><a href="/categorias/list">Categorias</a></li>
             <li class="breadcrumb-item active" aria-current="page">Agregar</li>
         </ol>
     </nav>
     <div class="form-add">
-        <form method="POST" action="{{route('create')}}">
+        <form method="POST" action="{{route('createCategoria')}}">
             @csrf
             <div class="form-group">
                 <label for="inputName">Nombre</label>

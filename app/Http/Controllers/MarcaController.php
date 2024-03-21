@@ -26,7 +26,7 @@ class MarcaController extends Controller
 
         $marca->save();
 
-        return redirect('list');
+        return redirect('/marcas/list');
     }
 
     public function edit($id)
@@ -44,13 +44,13 @@ class MarcaController extends Controller
 
         $marca->save();
 
-        return redirect($id . '/edit')->withSuccess('La marca ha sido actualizada correctamente.');
+        return redirect('/marcas' . '/' .$id . '/edit')->withSuccess('La marca ha sido actualizada correctamente.');
     }
 
     public function destroy($id)
     {
         $marca = Marca::find($id);
         $marca->delete();
-        return redirect('list');
+        return redirect('/marcas/list');
     }
 }

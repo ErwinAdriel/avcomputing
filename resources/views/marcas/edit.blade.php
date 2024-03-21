@@ -4,7 +4,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/layout">Home</a></li>
-            <li class="breadcrumb-item"><a href="/list">Marcas</a></li>
+            <li class="breadcrumb-item"><a href="/marcas/list">Marcas</a></li>
             <li class="breadcrumb-item active" aria-current="page">Editar</li>
         </ol>
     </nav>
@@ -23,7 +23,7 @@
                 <input type="text" class="form-control" id="name" name="name" value="{{ $marca->name }}">
             </div>
             <button type="submit" class="btn btn-primary mt-3">Actualizar</button>
-            <a class="btn btn-primary mt-3" href="/list" role="button">Volver atras</a>
+            <a class="btn btn-primary mt-3" href="/marcas/list" role="button">Volver atras</a>
         </form>
     </div>
 </div>
