@@ -68,5 +68,6 @@ Route::delete('/productos/list/{id}', [ProductoController::class, 'destroy'])->n
 Route::get('/usuarios/list', [UserController::class, 'index'])->name('usuarioList');
 Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuarioCreate');
 Route::post('/usuarios/create', [UserController::class, 'store'])->name('createUsuario');
-
+Route::get('/usuarios/{id}/edit', [UserController::class, 'edit'])->name('usuarioEdit');
+Route::put('/usuarios/{id}', [UserController::class, 'updateUsuarios'])->name('usuarioUpdate');
 

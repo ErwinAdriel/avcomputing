@@ -9,7 +9,7 @@
         </ol>
     </nav>
     <div>
-        <form method="POST" action="{{ route('create') }}">
+        <form method="POST" action="{{ route('usuarioCreate') }}">
             @csrf
             <div class="form-group">
                 <label for="inputName">Nombre</label>

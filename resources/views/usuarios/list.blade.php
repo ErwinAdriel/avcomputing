@@ -48,7 +48,7 @@
                             Eliminar
                         </button>
                         @else
-                        <a class="btn btn-primary" href="usuarios/{{$usuario->id}}/edit">Editar</a>
+                        <a class="btn btn-primary" href="{{ route('usuarioEdit', $usuario->id) }}">Editar</a>
                         <button type="button" class="btn btn-danger">
                             Eliminar
                         </button>

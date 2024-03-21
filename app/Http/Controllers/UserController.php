@@ -40,6 +40,13 @@ class UserController extends Controller
         return view('perfil.list', compact('usuario'));
     }
 
+    public function edit($id)
+    {
+        $usuario = User::findOrFail($id);
+
+        return view('usuarios.edit', compact('usuario'));
+    }
+
     public function update(Request $request, $id){
 
         $usuario = User::findOrFail($id);
@@ -51,4 +58,19 @@ class UserController extends Controller
 
         return redirect($id . '/perfil/list')->withSuccess('Los datos han sido actualizado correctamente.');
     }
+
+    public function updateUsuarios(Request $request, $id){
+
+        $usuario = User::findOrFail($id);
+
+        $usuario->name = $request->name;
+        $usuario->email = $request->email;
+        $usuario->phone = $request->phone;
+        $usuario->admin = $request->admin;
+        $usuario->save();
+
+        return redirect('/usuarios'. '/' . $id . '/edit')->withSuccess('Los datos han sido actualizado correctamente.');
+    }
+
+
 }
