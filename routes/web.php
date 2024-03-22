@@ -71,3 +71,5 @@ Route::post('/usuarios/create', [UserController::class, 'store'])->name('createU
 Route::get('/usuarios/{id}/edit', [UserController::class, 'edit'])->name('usuarioEdit');
 Route::put('/usuarios/{id}', [UserController::class, 'updateUsuarios'])->name('usuarioUpdate');
 
+/*  BUSCADOR */
+/*Route::post('/usuarios/list', [UserController::class, 'search'])->name('searchUsuarios');*/
