@@ -31,7 +31,7 @@ Route::get('/', [AuthController::class, 'index'])->name('app');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 /*  USUARIO LOGUEADO   */
-Route::get('/layout', [AuthController::class, 'logueado'])->name('layout');
+Route::get('/home', [AuthController::class, 'logueado'])->name('home');
 
 /*  CERRAR SESION   */
 Route::post('/layout', [AuthController::class, 'logout'])->name('logout');
