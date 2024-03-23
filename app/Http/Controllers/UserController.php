@@ -18,7 +18,7 @@ class UserController extends Controller
         ->where('name', 'LIKE', '%' . $buscador . '%')
         ->orWhere('email', 'LIKE', '%' . $buscador . '%')
         ->orderBy('name', 'asc')
-        ->simplePaginate(3);
+        ->simplePaginate(5);
 
         return view('usuarios.list', compact('usuarios', 'buscador'));
     }
@@ -80,6 +80,13 @@ class UserController extends Controller
         $usuario->save();
 
         return redirect('/usuarios'. '/' . $id . '/edit')->withSuccess('Los datos han sido actualizado correctamente.');
+    }
+
+    public function destroy($id)
+    {
+        $usuario = User::find($id);
+        $usuario->delete();
+        return redirect('/usuarios/list');
     }
 
 }

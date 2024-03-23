@@ -70,6 +70,7 @@ Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuario
 Route::post('/usuarios/create', [UserController::class, 'store'])->name('createUsuario');
 Route::get('/usuarios/{id}/edit', [UserController::class, 'edit'])->name('usuarioEdit');
 Route::put('/usuarios/{id}', [UserController::class, 'updateUsuarios'])->name('usuarioUpdate');
+Route::delete('/usuarios/list/{id}', [UserController::class, 'destroy'])->name('usuarioDelete');
 
 /*  BUSCADOR */
 /*Route::post('/usuarios/list', [UserController::class, 'search'])->name('searchUsuarios');*/

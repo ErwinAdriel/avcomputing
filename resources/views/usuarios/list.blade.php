@@ -36,41 +36,47 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                @if(count($usuarios)<=0)
-                    <tr>
-                        <td colspan="8">No hay resultados.</td>
+                @if(count($usuarios)<=0) <tr>
+                    <td colspan="8">No hay resultados.</td>
                     </tr>
-                @else
-                @foreach ($usuarios as $usuario)
-                <tr>
-                    <th scope=row>{{ $usuario->id}}</th>
-                    <td>{{ $usuario->name }}</td>
-                    <td>{{ $usuario->email }}</td>
-                    <td>{{ $usuario->phone }}</td>
-                    @if($usuario->admin == true)
-                    <td>Si</td>
                     @else
-                    <td>No</td>
-                    @endif
-                    <td>{{ $usuario->created_at }}</td>
-                    <td>{{ $usuario->updated_at }}</td>
-                    <td>
-                        @if(!auth()->user()->admin == 1)
-                        <a class="btn btn-secondary" onclick="mensaje()">Editar</a>
-                        <button type="button" class="btn btn-secondary" onclick="mensaje()">
-                            Eliminar
-                        </button>
+                    @foreach ($usuarios as $usuario)
+                    <tr>
+                        <th scope=row>{{ $usuario->id}}</th>
+                        <td>{{ $usuario->name }}</td>
+                        <td>{{ $usuario->email }}</td>
+                        <td>{{ $usuario->phone }}</td>
+                        @if($usuario->admin == true)
+                        <td>Si</td>
                         @else
-                        <a class="btn btn-primary" href="{{ route('usuarioEdit', $usuario->id) }}">Editar</a>
-                        <button type="button" class="btn btn-danger">
-                            Eliminar
-                        </button>
+                        <td>No</td>
                         @endif
-
-                    </td>
-                </tr>
-                @endforeach
-                @endif
+                        <td>{{ $usuario->created_at }}</td>
+                        <td>{{ $usuario->updated_at }}</td>
+                        @if(!auth()->user()->admin == 1)
+                        <td>
+                            <a class="btn btn-secondary" onclick="mensaje()">Editar</a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" onclick="mensaje()">
+                                Eliminar
+                            </button>
+                        </td>
+                        @else
+                        <td>
+                            <a class="btn btn-primary" href="{{ route('usuarioEdit', $usuario->id) }}">Editar</a>
+                        </td>
+                        <td>
+                            <form class="d-flex" action="{{ route('usuarioDelete', $usuario->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </td>
+                        @endif
+                    </tr>
+                    @endforeach
+                    @endif
             </tbody>
         </table>
     </div>
