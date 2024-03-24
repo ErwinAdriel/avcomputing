@@ -17,15 +17,10 @@
         body {
             font-family: 'Nunito', sans-serif;
         }
-
-        .gradient-custom {
-            /* fallback for old browsers */
-            background: grey;
-        }
     </style>
 </head>
 
-<body>
+<body class="bg-secondary">
     @yield('content')
 </body>
 

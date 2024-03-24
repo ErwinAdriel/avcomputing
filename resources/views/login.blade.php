@@ -1,32 +1,36 @@
 @extends('app')
 @section('content')
-@if(session('success'))
-<h1>{{session('success')}}</h1>
-@endif
-<section class="gradient-custom">
+<section class="">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                <div class="card bg-dark text-white">
-                    <div class="card-body p-5 text-center">
+                <div class="text-bg-dark">
+                    <div class="card-body px-5 py-2 text-center">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="mb-md-5 mt-md-4 pb-5">
-
                                 <h2 class="fw-bold mb-2 text-uppercase">Sistema de gestion</h2>
                                 <p class="text-white-50 mb-5">Ingresar usuario y clave!</p>
-
-                                <div class="form-outline form-white mb-4">
-                                    <input name="email" type="text" id="typeEmailX" class="form-control form-control-lg" required autofocus />
-                                    <label class="form-label" for="typeEmailX">Usuario</label>
+                                @if(session('success'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{session('success')}}
                                 </div>
-
-                                <div class="form-outline form-white mb-4">
-                                    <input name="password" type="password" id="typePasswordX" class="form-control form-control-lg" required autofocus />
-                                    <label class="form-label" for="typePasswordX">Clave</label>
+                                @endif
+                                <div class="form-white mb-4">
+                                    <label class="form-label" for="typeEmailX">Email</label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text bg-dark text-white"><i class="bi bi-envelope"></i></span>
+                                        <input name="email" type="text" class="form-control" required autofocus>
+                                    </div>
                                 </div>
-
-                                <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Olvide la contraseña?</a></p>
+                                <div class="form-white mb-4">
+                                    <label class="form-label" for="typePasswordX">Password</label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text bg-dark text-white"><i class="bi bi-key-fill"></i></span>
+                                        <input name="password" type="password" class="form-control" required autofocus>
+                                    </div>
+                                </div>
+                                <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">¿Olvidaste la contraseña?</a></p>
 
                                 <button class="btn btn-outline-light btn-lg px-5" type="submit">Ingresar</button>
                             </div>
