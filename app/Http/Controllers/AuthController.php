@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
+use App\Models\Marca;
+use App\Models\Producto;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,7 +44,11 @@ class AuthController extends Controller
     public function logueado()
     {
         if (Auth::check()) {
-            return view('home');
+            $usuarios = User::all();
+            $productos = Producto::all();
+            $marcas = Marca::all();
+            $categorias = Categoria::all();
+            return view('home', compact('usuarios', 'productos', 'marcas', 'categorias'));
         }
         return redirect('/')->withSuccess('No tienes acceso, por favor iniciar sesion');
     }

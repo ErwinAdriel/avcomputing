@@ -12,7 +12,7 @@
             </li>
             <li class="nav-item">
                 <a href="{{ route('productoList') }}" class="nav-link align-middle px-0">
-                    <i class="bi bi-shop"></i>
+                    <i class="bi bi-cart"></i>
                     <span class="ms-1 d-none d-sm-inline">Productos</span>
                 </a>
             </li>
