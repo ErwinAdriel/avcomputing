@@ -5,14 +5,32 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Marca;
 use App\Models\Producto;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
     public function index()
     {
-        $productos = Producto::all();
+        $productos = Producto::query()
+        ->when(request('buscador'), function($query){
+            return $query->where('name', 'like', '%' . request('buscador') . '%');
+        })
+        ->simplePaginate(5);
+        //->withQueryString();
+
         return view('productos.list', compact('productos'));
+
+
+        /*$buscador = trim($request->get('buscador'));
+        $productos = DB::table('productos')
+        ->select('id', 'name', 'price', 'destacado', 'id_categoria', 'id_marca', 'description', 'created_at', 'updated_at')
+        ->where('name', 'LIKE', '%' . $buscador . '%')
+        ->orWhere('description', 'LIKE', '%' . $buscador . '%')
+        ->orderBy('name', 'asc')
+        ->simplePaginate(5);
+
+        return view('productos.list', compact('productos', 'buscador'));*/
     }
 
     public function create()

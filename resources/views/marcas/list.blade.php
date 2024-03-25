@@ -10,8 +10,8 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <a class="btn btn-success btn-add" href="{{ route('marcaCreate') }}" role="button">Nuevo</a>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" aria-label="Search">
+            <form class="d-flex" action="{{ route('marcaList') }}" method="get">
+                <input class="form-control me-2" type="search" name="buscador" value="" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
             </form>
         </div>
@@ -30,28 +30,33 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                @foreach ($marcas as $marca)
-                <tr>
-                    <th scope="row">{{ $marca->id }}</th>
-                    <td>{{ $marca->name }}</td>
-                    <td>{{ $marca->created_at }}</td>
-                    <td>{{ $marca->updated_at }}</td>
-                    <td>
-                        <a class="btn btn-primary" href="{{ route('marcaEdit', $marca->id) }}">Editar</a>
-                    </td>
-                    <td>
-                        <form class="d-flex" action="{{ route('marcaDelete', $marca->id) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
+                @if(count($marcas)<=0) <tr>
+                    <td colspan="8">No hay resultados.</td>
+                    </tr>
+                    @else
+                    @foreach ($marcas as $marca)
+                    <tr>
+                        <th scope="row">{{ $marca->id }}</th>
+                        <td>{{ $marca->name }}</td>
+                        <td>{{ $marca->created_at }}</td>
+                        <td>{{ $marca->updated_at }}</td>
+                        <td>
+                            <a class="btn btn-primary" href="{{ route('marcaEdit', $marca->id) }}">Editar</a>
+                        </td>
+                        <td>
+                            <form class="d-flex" action="{{ route('marcaDelete', $marca->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                    @endif
             </tbody>
         </table>
     </div>
-
+    {{ $marcas->links() }}
 </div>
 
 <script>

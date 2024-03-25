@@ -9,7 +9,12 @@ class MarcaController extends Controller
 {
     public function index()
     {
-        $marcas = Marca::all();
+        $marcas = Marca::query()
+        ->when(request('buscador'), function($query){
+            return $query->where('name', 'like', '%' . request('buscador') . '%');
+        })
+        ->simplePaginate(5);
+
         return view('marcas.list', compact('marcas'));
     }
 

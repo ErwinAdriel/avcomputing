@@ -10,8 +10,8 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <a class="btn btn-success btn-add" href="{{ route('productoCreate') }}" role="button">Nuevo</a>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" aria-label="Search">
+            <form class="d-flex" action="{{ route('productoList') }}" method="get">
+                <input class="form-control me-2" type="search" name="buscador" value="" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
             </form>
         </div>
@@ -35,37 +35,42 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                @foreach ($productos as $producto)
-                <tr>
-                    <th scope="row">{{ $producto->id }}</th>
-                    <td>{{ $producto->name }}</td>
-                    <td>{{ $producto->price }}</td>
-                    @if($producto->destacado == true)
-                        <td>Si</td>    
+                @if(count($productos)<=0) <tr>
+                    <td colspan="8">No hay resultados.</td>
+                    </tr>
                     @else
+                    @foreach ($productos as $producto)
+                    <tr>
+                        <th scope="row">{{ $producto->id }}</th>
+                        <td>{{ $producto->name }}</td>
+                        <td>{{ $producto->price }}</td>
+                        @if($producto->destacado == true)
+                        <td>Si</td>
+                        @else
                         <td>No</td>
+                        @endif
+                        <td>{{ $producto->categoria->name }}</td>
+                        <td>{{ $producto->marca->name }}</td>
+                        <td>{{ $producto->description }}</td>
+                        <td>{{ $producto->created_at }}</td>
+                        <td>{{ $producto->updated_at }}</td>
+                        <td>
+                            <a class="btn btn-primary" href="{{ route('productoEdit', $producto->id) }}">Editar</a>
+                        </td>
+                        <td>
+                            <form class="d-flex" action="{{ route('productoDelete', $producto->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
                     @endif
-                    <td>{{ $producto->categoria->name }}</td>
-                    <td>{{ $producto->marca->name }}</td>
-                    <td>{{ $producto->description }}</td>
-                    <td>{{ $producto->created_at }}</td>
-                    <td>{{ $producto->updated_at }}</td>
-                    <td>
-                        <a class="btn btn-primary" href="{{ route('productoEdit', $producto->id) }}">Editar</a>
-                    </td>
-                    <td>
-                        <form class="d-flex" action="{{ route('productoDelete', $producto->id) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
             </tbody>
         </table>
     </div>
-
+    {{ $productos->links() }}
 </div>
 
 <script>

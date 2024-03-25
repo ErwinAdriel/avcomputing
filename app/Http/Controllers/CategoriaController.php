@@ -4,13 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categoria;
+use Illuminate\Support\Facades\DB;
 
 class CategoriaController extends Controller
 {
     /* Devuelve una lista de todas las categorias */
-    public function index()
+    public function index(Request $request)
     {
-        $categorias = Categoria::all();
+        /*$buscador = trim($request->get('buscador'));
+        $categorias = DB::table('categorias')
+        ->select('id', 'name', 'created_at', 'updated_at')
+        ->where('name', 'LIKE', '%' . $buscador . '%')
+        ->orderBy('name', 'asc')
+        ->simplePaginate(5);*/
+
+        $categorias = Categoria::query()
+        ->when(request('buscador'), function($query){
+            return $query->where('name', 'like', '%' . request('buscador') . '%');
+        })
+        ->simplePaginate(5);
+        //->withQueryString();
+
         return view('categorias.list', compact('categorias'));
     }
 

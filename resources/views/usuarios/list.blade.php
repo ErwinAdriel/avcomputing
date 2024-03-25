@@ -15,7 +15,7 @@
             <a class="btn btn-success btn-add" href="{{ route('usuarioCreate') }}" role="button">Nuevo</a>
             @endif
             <form class="d-flex" action="{{ route('usuarioList') }}" method="get">
-                <input class="form-control me-2" type="search" name="buscador" value="{{ $buscador }}" aria-label="Search">
+                <input class="form-control me-2" type="search" name="buscador" value="" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
             </form>
         </div>
@@ -36,6 +36,7 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
+            
                 @if(count($usuarios)<=0) <tr>
                     <td colspan="8">No hay resultados.</td>
                     </tr>

@@ -4,23 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Input;
 
 class UserController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        /* QUERY */
-        $buscador = trim($request->get('buscador'));
-        $usuarios = DB::table('users')
-        ->select('id', 'name', 'email', 'phone', 'admin', 'created_at', 'updated_at')
-        ->where('name', 'LIKE', '%' . $buscador . '%')
-        ->orWhere('email', 'LIKE', '%' . $buscador . '%')
-        ->orderBy('name', 'asc')
+        $usuarios = User::query()
+        ->when(request('buscador'), function($query){
+            return $query->where('name', 'like', '%' . request('buscador') . '%');
+        })
         ->simplePaginate(5);
 
-        return view('usuarios.list', compact('usuarios', 'buscador'));
+        return view('usuarios.list', compact('usuarios'));
     }
 
     public function create()
